@@ -25,7 +25,7 @@
     "react-hooks"
   ],
   "rules": {
-    "jsx-a11y/label-has-associated-control": "off",
+    // "jsx-a11y/label-has-associated-control": "off",
     "object-curly-newline": ["error", {
       "ImportDeclaration": { "multiline": true },
       "ObjectExpression": { "multiline": true },
@@ -35,19 +35,19 @@
     "no-use-before-define": "off",
     "react/jsx-closing-bracket-location": ["error", "after-props"],
     "linebreak-style": "off",
-    "no-unused-vars": "off",
+    // "no-unused-vars": "off",
     "no-unused-expressions": "off",
     "import/no-unresolved": "off",
     "import/extensions": "off",
     "no-nested-ternary": "off",
     "react/jsx-max-props-per-line": ["error", { "maximum": 2 }],
     "max-len": ["error", { "code": 110 }],
-    "react/prop-types": "off",
-    "brace-style": "off",
+    // "react/prop-types": "off",
+    // "brace-style": "off",
     "camelcase": "off",
-    "react/require-default-props": "off",
+    // "react/require-default-props": "off",
     "react/jsx-one-expression-per-line": ["error", { "allow": "none" }],
-    "array-bracket-newline": ["error", { "multiline": true }],
+    // "array-bracket-newline": ["error", { "multiline": true }],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "error"
   }

@@ -28,7 +28,7 @@ export const Bar = styled.div<{height: number}>`
   height: ${(props) => Math.abs(props.height) * 50}%;
   background-color: ${(props) => props.color || 'green'};
   transform: ${(props) => (props.height < 0 ? 'translateY(50%)' : 'translateY(-50%)')};
-  transition: height 0.5s;
+  transition: height 0.5s, transform 0.5s;
 `;
 
 export const XAxis = styled.div`
@@ -49,10 +49,11 @@ export const XAxis = styled.div`
 
   .x-axis__ticks {
     flex-grow: 1;
+    flex-basis: 0;
     margin-left: 0.5rem;
     margin-right: 0.5rem;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 0.8rem;
     font-weight: 600;
   }
 `;
@@ -98,6 +99,7 @@ export const LegendLabel = styled.div`
   padding-left: 2.5rem;
   padding-right: 2.5rem;
   height: 2rem;
+  line-height: 1.6rem;
   max-width: calc(50% - 6rem);
   overflow: hidden;
   position: relative;

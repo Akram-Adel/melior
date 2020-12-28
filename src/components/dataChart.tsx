@@ -2,23 +2,32 @@
 // the effort to setup and I usually rely on on 3p libraries like Chart.js. But since the task require
 // the chart to be created from scratch, I chose to do it using html elements and flex-box for responsivenes
 import React from 'react';
+import { Moment } from 'moment';
 
-// Styled-Components
+import { IQuestionsApi } from 'interfaces/api';
+
 import { ChartContainer, Bar, XAxis, YAxis, Legend, LegendLabel } from './dataChart.styled';
 
-const DataChart = ({ bars }: {bars: number}) => (
+type IProps = {
+  bars: number
+  questionsResp: IQuestionsApi[keyof IQuestionsApi]
+  datePartitions: {from: Moment, to: Moment}[]
+}
+
+const DataChart = ({ bars, questionsResp, datePartitions }: IProps) => (
   <ChartContainer>
     {[...Array(bars)].map((_, i) => (
       <div key={i.toString()} className="chart-container__bar-container">
-        <Bar color="green" height={0.5} />
-        <Bar color="yellow" height={-0.75} />
+        <Bar color="green" height={0} />
+        <Bar color="yellow" height={0} />
       </div>
     ))}
 
     <XAxis>
       {[...Array(bars)].map((_, i) => (
         <div key={i.toString()} className="x-axis__ticks">
-          {i}
+          {datePartitions[i]
+            && `${datePartitions[i].from.format('DD-MM')} ~ ${datePartitions[i].to.format('DD-MM')}`}
         </div>
       ))}
     </XAxis>
@@ -28,10 +37,10 @@ const DataChart = ({ bars }: {bars: number}) => (
 
     <Legend>
       <LegendLabel color="green">
-        Q1
+        {questionsResp.find((q) => q.id === 2)?.text || ''}
       </LegendLabel>
       <LegendLabel color="yellow">
-        Q2
+        {questionsResp.find((q) => q.id === 4)?.text || ''}
       </LegendLabel>
     </Legend>
   </ChartContainer>
