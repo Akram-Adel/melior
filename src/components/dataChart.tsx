@@ -8,26 +8,27 @@ import { IQuestionsApi } from 'interfaces/api';
 
 import { ChartContainer, Bar, XAxis, YAxis, Legend, LegendLabel } from './dataChart.styled';
 
+export type IReviewPartition = { from: Moment, to: Moment, qOne: number, qTwo: number }
 type IProps = {
   bars: number
   questionsResp: IQuestionsApi[keyof IQuestionsApi]
-  datePartitions: {from: Moment, to: Moment}[]
+  reviewPartitions: IReviewPartition[]
 }
 
-const DataChart = ({ bars, questionsResp, datePartitions }: IProps) => (
+const DataChart = ({ bars, questionsResp, reviewPartitions }: IProps) => (
   <ChartContainer>
     {[...Array(bars)].map((_, i) => (
       <div key={i.toString()} className="chart-container__bar-container">
-        <Bar color="green" height={0} />
-        <Bar color="yellow" height={0} />
+        <Bar color="green" height={reviewPartitions[i]?.qOne || 0} />
+        <Bar color="yellow" height={reviewPartitions[i]?.qTwo || 0} />
       </div>
     ))}
 
     <XAxis>
       {[...Array(bars)].map((_, i) => (
         <div key={i.toString()} className="x-axis__ticks">
-          {datePartitions[i]
-            && `${datePartitions[i].from.format('DD-MM')} ~ ${datePartitions[i].to.format('DD-MM')}`}
+          {reviewPartitions[i]
+            && `${reviewPartitions[i].from.format('DD-MM')} ~ ${reviewPartitions[i].to.format('DD-MM')}`}
         </div>
       ))}
     </XAxis>

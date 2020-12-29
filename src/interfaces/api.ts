@@ -9,13 +9,13 @@ export type IQuestionsApi = {
   }[]
 }
 
+export type IReviewAnswer = {
+  question: number
+  choice: number
+}
 export type IReviewsApi = {
-  results: {
-    id: number
+  line_chart_data: {
     submitted_at: string
-    answers: {
-      question: number
-      choice: number
-    }[]
-  }[]
+    answers: IReviewAnswer[]
+  }[] | undefined
 }
